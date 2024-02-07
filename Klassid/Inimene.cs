@@ -26,9 +26,18 @@ namespace Klassid
              set => _nimi = string.Join(" ", 
                  value.Replace("-", "- ")
                  .Split(' ')
+                 // seda järgmist rida sa veel ei oska
                  .Select(x => x.Substring(0,1).ToUpper() + x.Substring(1).ToLower()))
                 .Replace("- ","-");
 
+            /*
+                value.split(' ') -> saad sulemuseks massivi
+                for tsükliga käid selle massivi üle teed iga osaga 
+                selle substring(0,1).ToUpper() + substring(1).ToLower()
+                tulemus = "";
+                tsükliga tulemus += element
+                return see tulemus
+            */
         }
 
 

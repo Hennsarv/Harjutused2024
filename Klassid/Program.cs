@@ -39,7 +39,7 @@ namespace Klassid
             };
             foreach (var item in raffas)
             {
-                Console.WriteLine( item );
+                Console.WriteLine( item.Nimi );
             }
 
 
