@@ -28,6 +28,21 @@ namespace Klassid
             Console.WriteLine(henn);
             Tere(henn);  // method call 
 
+            Console.WriteLine("\ntestime nüüd\n");
+
+            Inimene[] raffas =
+            {
+                new Inimene {Nimi = "oliver barret"},
+                new Inimene {Nimi = "oliver BARRET neljas"},
+                new Inimene {Nimi = "pille-riin purje"},
+
+            };
+            foreach (var item in raffas)
+            {
+                Console.WriteLine( item );
+            }
+
+
             int summ = MassiviSumma(new int[] { 1, 2, 3 });          
 
             int[] palgad = { 1000, 1200, 2000 };
