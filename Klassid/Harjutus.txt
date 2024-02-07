@@ -1,0 +1,27 @@
+﻿Proovi midagi analoogilist
+
+aga tee nii, et inimese nimi vastaks sellistele reeglitele
+
+	Nimi võib koosneda mitmest osast
+	Iga nime osa peab olema suure algustähega
+
+	nime osad on eraldatud tühikuga
+
+	KES ON OSAV: või ka -ga 
+
+Testi
+	oliver barret			-> Oliver Barret
+	oliver BARRET neljas		-> Oliver Barret Neljas
+	pille-riin purje		-> Pille-Riin purje
+
+sellised funktsioonid (neist oleks abi)
+
+	string.SubString - saad eraldada string mingi kindla osa
+	string.Split	 - saad tükeldada string massiviks
+	string.Join	 - saad massiivi kokku panna stringiks
+
+Kui jaksad siis
+
+	lisa oma klassile väli/property Palk
+	mille reegel on, et ei saa olla väiksem kui alampalk
+	ja mida saab ainult tõsta (väiksemaks teha ei saa)
