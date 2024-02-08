@@ -1,6 +1,6 @@
 Tee nende kollektsioonide abil mõned asjad
 
-* proovi Listi kasutades - kas sa suudad kaardiüaki kokku segada
+* proovi Listi kasutades - kas sa suudad kaardipaki kokku segada
 	oluline, et ükski kaart ei tohi korduda ja pakk on ilusti segatud
 	Tee üks variant int ja teine variant (Mast,Kaart)
 
@@ -8,7 +8,7 @@ Tee nende kollektsioonide abil mõned asjad
 	pane sinna juhuslikult valitud mõned nimed ja sünnipäevad
 	Siis vasta kahele küsimusele
 		mis on selle seltskonna keskmine vanus (täisaastates)
-		kell sünnipäev tuleb järgmisena
+		kelel sünnipäev tuleb järgmisena
 
 Nende kahe abil saate selle dictionary ja listi asja selgeks
 
