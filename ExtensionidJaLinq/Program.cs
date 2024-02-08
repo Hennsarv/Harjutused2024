@@ -96,11 +96,11 @@ namespace ExtensionidJaLinq
                 .CWL();  // tulistame välja
 
 
-            var sünnipäevad = new Dictionary<string, DateTime>
+            var sünnipäevad = new Dictionary<string, DateTime?>
             {
                 {"Henn", new DateTime(1955,3,7) },
                 {"Ants", new DateTime(1966,4,4) },
-                {"Peeter", new DateTime(194,5,5) },
+                {"Peeter", null},
                 {"Joosep", new DateTime(1988,1,1) },
                 {"Jüri", new DateTime(1999,2,2) },
                 {"Malle", new DateTime(2001,2,28) }
@@ -119,7 +119,9 @@ namespace ExtensionidJaLinq
                 .CWL(suffix: " on kõige noorem", prefix: "Tema: ");
 
             sünnipäevad
-                .Select(x => new { nimi = x.Key, birthday = new DateTime(DateTime.Now.Year, x.Value.Month, 1).AddDays(x.Value.Day-1)  })
+                .Where(x => x.Value.HasValue)
+                .Select(x => new {x, birthday = (DateTime)x.Value.Value})
+                .Select(x => new { nimi = x, birthday = new DateTime(DateTime.Now.Year, x.birthday.Month , 1).AddDays(x.birthday.Day-1)  })
                 .Select(x => new { x.nimi, birthday = x.birthday < DateTime.Today ? x.birthday.AddYears(1) : x.birthday })
                 .OrderBy(x => x.birthday)
                 .FirstOrDefault()
