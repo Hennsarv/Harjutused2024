@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kollektsioonid
 {
+    public enum Mast { Risti, Ruutu, Ärtu, Poti}
+    public enum Kaart
+    {
+        Kaks, Kolm, Neli, Viis, Kuus, Seitse, Kaheksa, Üheksa, Kümme,
+        Soldat, Emand, Kuningas, Äss
+    }
+    
+
     internal class Program
     {
         static void Main(string[] args)
@@ -16,11 +25,11 @@ namespace Kollektsioonid
             decimal teine = 8;
             Console.WriteLine($"{esimene}-{teine} ");
             Vaheta(ref esimene, ref teine);
-            Console.WriteLine($"{esimene }-{teine} "  );
+            Console.WriteLine($"{esimene}-{teine} ");
 
             List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, };
-            
-            foreach(int i in list) Console.Write($"{i}, ");
+
+            foreach (int i in list) Console.Write($"{i}, ");
             Console.WriteLine();
             list.Add(12); // 8 järele läheb 12
             list.Remove(5); // keskelt 5 nopitakse ära (kui listis on mitu, sisi vaid esimene)
@@ -31,12 +40,12 @@ namespace Kollektsioonid
 
             list = new List<int>(80) { };
             for (int i = 0; i < 100; i++)
-            { 
+            {
                 list.Add(i);
                 Console.WriteLine($"{list.Count} - {list.Capacity}");
             }
 
-            
+
 
             List<string> list2 = new List<string>() { };
             List<decimal> list3 = new List<decimal>() { };
@@ -44,7 +53,7 @@ namespace Kollektsioonid
             List<(int a, int b)> list4 = new List<(int a, int b)>();
 
             list4.Add((3, 4));
-//            Console.WriteLine( string.Join(", ", list));
+            //            Console.WriteLine( string.Join(", ", list));
 
             int[] arr = list.ToArray();
             var uuslist = arr.ToList();
@@ -102,7 +111,45 @@ namespace Kollektsioonid
 
             // põhiliosed kollektsioonid on üle vaadatud
 
+            Random R = new Random();
+            List<int> segamatapakk = Enumerable.Range(0, 52).ToList();
+            List<int> segatudpakk = new List<int>(52);
+            while (segamatapakk.Count > 0)
+            {
+                int i = R.Next(segamatapakk.Count);
+                segatudpakk.Add(segamatapakk[i]);
+                segamatapakk.RemoveAt(i);
+            }
 
+            Console.WriteLine("\nsegatud pakk\n");
+            for (int i = 0; i < segatudpakk.Count; i++)
+            {
+                Console.Write($"{(Mast)(segatudpakk[i] / 13)} {(Kaart)(segatudpakk[i] % 13)}\t\t" + (i % 4 == 3 ? "\n" : ""));
+            }
+
+            // täna õhtul oskaks teha nii
+
+
+            // segame paki (arvud 0..51)
+            var segatud = Enumerable.Range(0, 52).AsEnumerable()
+                .OrderBy(x => R.NextDouble()).ToList();
+            var jagatud = Enumerable.Range(0, 4)
+                .Select(x => segatud.Skip(x * 13).Take(13).OrderByDescending(y => y).ToList())
+                .ToList();
+
+            Console.WriteLine("\nteine segatud ja jagatud pakk\n");
+
+            Console.WriteLine("Põhi\t\t\tIda\t\t\tLõuna\t\t\tLääs");
+            Console.WriteLine(new string('-', 100));
+            for (int i = 0; i < 13; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.Write($"{(Mast)(jagatud[j][i] / 13)} {(Kaart)(jagatud[j][i] % 13)}\t\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
 
         //static void Vaheta(ref int a, ref int b)
