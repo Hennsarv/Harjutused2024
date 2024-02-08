@@ -13,12 +13,42 @@ namespace Kollektsioonid
         Kaks, Kolm, Neli, Viis, Kuus, Seitse, Kaheksa, Üheksa, Kümme,
         Soldat, Emand, Kuningas, Äss
     }
+
+    public class PlayCard { 
+        public Mast Mast; 
+        public Kaart Kaart;
+        public PlayCard(int x) => (Mast, Kaart) = ((Mast)(x / 13), (Kaart)(x % 13));
+        private PlayCard(Mast mast, Kaart kaart) => (Mast, Kaart) = (mast, kaart);
+        public override string ToString() => $"{Mast} {Kaart}";
+
+        public static implicit operator PlayCard(int x) => new PlayCard(x);
+
+        public static PlayCard Parse(string s)
+        /*{
+        //    var t = s.Split(' ');
+        //    Mast m = (Mast)Enum.Parse(typeof(Mast), t[0]);
+        //    Kaart k = (Kaart)Enum.Parse(typeof (Kaart), t[1]);
+        //    return new PlayCard(m, k);
+        //}*/
+        => new PlayCard(
+                (Mast)Enum.Parse(typeof(Mast), s.Split(' ')[0]), 
+                (Kaart)Enum.Parse(typeof(Kaart), s.Split(' ')[1]));
+
+//        public static bool TryParse(string s, out PlayCard m) 
+    }
     
 
     internal class Program
     {
         static void Main(string[] args)
         {
+            
+            PlayCard mk = new PlayCard(20);
+            PlayCard tmk = 20;
+            string kaart = "Risti Kuningas";
+            PlayCard kmk = PlayCard.Parse(kaart);   
+            
+            
             int[] ints = { 1, 2, 3, 4, 5, };
 
             decimal esimene = 7;
@@ -111,12 +141,14 @@ namespace Kollektsioonid
 
             // põhiliosed kollektsioonid on üle vaadatud
 
+            
+
             Random R = new Random();
             List<int> segamatapakk = Enumerable.Range(0, 52).ToList();
             List<int> segatudpakk = new List<int>(52);
             while (segamatapakk.Count > 0)
             {
-                int i = R.Next(segamatapakk.Count);
+                int i = R.Next(segamatapakk.Count);  // R.Next() % segamatapakk.Count
                 segatudpakk.Add(segamatapakk[i]);
                 segamatapakk.RemoveAt(i);
             }
@@ -124,7 +156,8 @@ namespace Kollektsioonid
             Console.WriteLine("\nsegatud pakk\n");
             for (int i = 0; i < segatudpakk.Count; i++)
             {
-                Console.Write($"{(Mast)(segatudpakk[i] / 13)} {(Kaart)(segatudpakk[i] % 13)}\t\t" + (i % 4 == 3 ? "\n" : ""));
+                //Console.Write($"{(Mast)(segatudpakk[i] / 13)} {(Kaart)(segatudpakk[i] % 13)}\t\t" + (i % 4 == 3 ? "\n" : ""));
+                Console.Write($"{ (PlayCard)segatudpakk[i]}{(i % 4 == 3 ? "\n" : "\t\t")}"   ) ;
             }
 
             // täna õhtul oskaks teha nii
@@ -150,6 +183,9 @@ namespace Kollektsioonid
                 Console.WriteLine();
             }
             Console.WriteLine();
+
+            foreach(PlayCard pc in segatudpakk) { Console.WriteLine(pc); }
+
         }
 
         //static void Vaheta(ref int a, ref int b)
