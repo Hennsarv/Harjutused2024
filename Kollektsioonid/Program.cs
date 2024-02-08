@@ -164,10 +164,17 @@ namespace Kollektsioonid
 
 
             // segame paki (arvud 0..51)
-            var segatud = Enumerable.Range(0, 52).AsEnumerable()
-                .OrderBy(x => R.NextDouble()).ToList();
+            var segatud = 
+                Enumerable.Range(0, 52)
+                //.AsEnumerable()
+                .OrderBy(x => R.NextDouble())
+                .ToList();
             var jagatud = Enumerable.Range(0, 4)
-                .Select(x => segatud.Skip(x * 13).Take(13).OrderByDescending(y => y).ToList())
+                .Select(x => segatud
+                            .Skip(x * 13)
+                            .Take(13)
+                            .OrderByDescending(y => y)
+                            .ToList())
                 .ToList();
 
             Console.WriteLine("\nteine segatud ja jagatud pakk\n");
@@ -178,13 +185,13 @@ namespace Kollektsioonid
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    Console.Write($"{(Mast)(jagatud[j][i] / 13)} {(Kaart)(jagatud[j][i] % 13)}\t\t");
+                    Console.Write($"{(PlayCard)jagatud[j][i]}\t\t");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
 
-            foreach(PlayCard pc in segatudpakk) { Console.WriteLine(pc); }
+            //foreach(PlayCard pc in segatudpakk) { Console.WriteLine(pc); }
 
         }
 
