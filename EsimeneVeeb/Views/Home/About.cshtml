@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+    <hr />
+    <h3>Mida iganes @(System.DateTime.Now)</h3>
+    <h3>Seda lehte vaatab: @ViewBag.Nimi @ViewBag.Id</h3>
+    <h3>Query: @Request.QueryString</h3>
+    <h3>Url: @Request.Url</h3>
+    <h3>Amet: @Request.Params["amet"]</h3>
+    <hr />
+
+    @{ 
+        int i = 77;
+        Dictionary<string, int> ihii =
+            new Dictionary<string, int>
+            {
+                {"Henn", 68 },
+                {"Ants", 44 }
+            };
+
+    }
+
+    <p>Use this area to provide additional information.</p>
+</main>
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <td>Nimi</td>
+            <td>Vanus</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var x in ihii)
+            {
+                <tr>
+                    <td>
+                        @x.Key
+                    </td>
+                    <td style="text-align:right;">@x.Value</td>
+                </tr>
+            }
+
+        
+    </tbody>
+
+</table>
