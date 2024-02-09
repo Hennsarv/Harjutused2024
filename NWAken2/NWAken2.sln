@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWAken2", "NWAken2.csproj", "{35D81344-2B70-4EF4-9E87-1EEF3C923FF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35D81344-2B70-4EF4-9E87-1EEF3C923FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D81344-2B70-4EF4-9E87-1EEF3C923FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D81344-2B70-4EF4-9E87-1EEF3C923FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D81344-2B70-4EF4-9E87-1EEF3C923FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5EFB34D-6D4A-4B0E-B780-4F009E2913DC}
+	EndGlobalSection
+EndGlobal
