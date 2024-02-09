@@ -66,7 +66,7 @@ namespace FailidJaAndmed
                 .Select(x => x.ToString())
                 
                 );
-
+            
 
 
 
