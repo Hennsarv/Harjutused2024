@@ -12,7 +12,7 @@ namespace EsimeneVeeb.Controllers
 {
     public class CustomersController : Controller
     {
-        private NorthwindEntities db = new NorthwindEntities();
+        private NorthwindEntities db = new NorthwindEntities("x");
 
         // GET: Customers
         public ActionResult Index()
