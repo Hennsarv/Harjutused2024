@@ -7,7 +7,7 @@ using EsimeneVeeb.Models;
 
 namespace EsimeneVeeb.Controllers
 {
-    public class InimeneController : Controller
+    public class InimeneController : MyController
     {
         // GET: Inimene
         public ActionResult Index()

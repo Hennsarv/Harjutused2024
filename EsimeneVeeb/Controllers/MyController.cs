@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EsimeneVeeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,12 @@ namespace EsimeneVeeb.Controllers
 {
     public class MyController : Controller
     {
-        // GET: My
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+
+        private NorthwindEntities _db = null; //new NorthwindEntities("x");
+
+        protected NorthwindEntities db => 
+            _db ?? 
+            (_db = new NorthwindEntities("x"));
     }
 }
