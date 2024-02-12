@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<EsimeneVeeb.Models.Product>
+@using EsimeneVeeb.Helpers
 
 @{
     //Layout = null;
@@ -13,31 +14,41 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionButton("Create New", "Create", "Products", htmlAttributes: new { @class = "btn btn-success" })
+        @*
+        @Html.ActionLink("Create New", "Create", "Products", null, htmlAttributes: new { @class = "btn btn-success" })
+        *@
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                
+                @Html.ActionButton(Html.NameFor(model => model.ProductName) + (ViewBag.Sort == "PN" ? " &uarr;" : ViewBag.Sort == "PND" ? " &darr;" : "") , "Index", "Products", new { sort = ViewBag.Sort == "PN" ? "PND" : "PN" }, new { @class = "btn btn-light"}) 
+                @*@Html.DisplayNameFor(model => model.ProductName)*@
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.SupplierID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuantityPerUnit)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
+                @Html.ActionButton(Html.NameFor(model => model.UnitPrice) + (ViewBag.Sort == "UP" ? "&nbsp;&uarr;" : ViewBag.Sort == "UPD" ? "&nbsp;&darr;" : ""), "Index", "Products", new { sort = ViewBag.Sort == "UP" ? "UPD" : "UP" }, new { @class = "btn btn-light" })
+
+                @*@Html.DisplayNameFor(model => model.UnitPrice)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnitsInStock)
+                <div class="btn btn-light">
+                    @Html.NameFor(model => model.UnitsInStock)
+                </div>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UnitsOnOrder)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ReorderLevel)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Discontinued)
             </th>
@@ -70,9 +81,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UnitsOnOrder)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ReorderLevel)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Discontinued)
             </td>
@@ -83,9 +94,9 @@
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }, new { @class = "btn btn-light btn-sm"}) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductID }, new { @class = "btn btn-light btn-sm" }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductID }, new { @class = "btn btn-light btn-sm" })
             </td>
         </tr>
     }

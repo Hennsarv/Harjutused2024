@@ -15,9 +15,18 @@ namespace EsimeneVeeb.Controllers
 
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string sort = "PI")
         {
             var products = db.Products.Include(p => p.Category);
+            ViewBag.Sort = sort;
+            products =
+                sort == "PI" ? products.OrderBy(x => x.ProductID)
+              : sort == "PN" ? products.OrderBy(x => x.ProductName)
+              : sort == "UP" ? products.OrderBy(x => x.UnitPrice)
+              : sort == "PID" ? products.OrderByDescending(x => x.ProductID)
+              : sort == "PND" ? products.OrderByDescending(x => x.ProductName)
+              : sort == "UPD" ? products.OrderByDescending(x => x.UnitPrice)
+              : products;
             return View(products.ToList());
         }
 
