@@ -26,7 +26,8 @@ namespace EsimeneVeeb.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Product product = db.Products.Find(id);
             if (product == null)
