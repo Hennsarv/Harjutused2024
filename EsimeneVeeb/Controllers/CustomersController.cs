@@ -10,9 +10,8 @@ using EsimeneVeeb.Models;
 
 namespace EsimeneVeeb.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : MyController
     {
-        private NorthwindEntities db = new NorthwindEntities("x");
 
         // GET: Customers
         public ActionResult Index()

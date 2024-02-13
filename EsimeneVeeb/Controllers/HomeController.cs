@@ -18,7 +18,9 @@ namespace EsimeneVeeb.Controllers
             ViewBag.Message = "Meie rakenduse kirjeldus.";
             ViewBag.Mina = "Henn";
             ViewBag.Nimi = nimi;
-            ViewBag.Id = id;
+            ViewBag.Id = id; 
+            ViewData["Mumm"] = "Mumm";
+
 
             return View();
         }

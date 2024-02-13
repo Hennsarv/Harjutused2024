@@ -10,6 +10,10 @@
     <h3>Query: @Request.QueryString</h3>
     <h3>Url: @Request.Url</h3>
     <h3>Amet: @Request.Params["amet"]</h3>
+
+    @*@foreach (var x in Request.Params)
+    {<h4>@x - @Request.Params[x]</h4>}*@
+
     <hr />
 
     @{ 

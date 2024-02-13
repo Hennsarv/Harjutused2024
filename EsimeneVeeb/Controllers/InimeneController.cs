@@ -16,6 +16,11 @@ namespace EsimeneVeeb.Controllers
             return View(list);
         }
 
+        public ActionResult LaeAndmed()
+        {
+            return Json(Inimene.Rahvas.Values.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Inimene/Details/5
         public ActionResult Details(int id)
         {

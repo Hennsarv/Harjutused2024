@@ -13,7 +13,8 @@ using EsimeneVeeb.Models;
 namespace EsimeneVeeb.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController 
+        : MyController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

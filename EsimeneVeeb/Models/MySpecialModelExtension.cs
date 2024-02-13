@@ -12,12 +12,6 @@ using System.Web.Compilation;
 
 namespace EsimeneVeeb.Models
 {
-    public class MySpecialModelExtension
-    {
-    }
-
-
-
 
 public partial class NorthwindEntities : DbContext
     {
@@ -35,7 +29,7 @@ public partial class NorthwindEntities : DbContext
             string user = (string)Registry.GetValue(regKeyPath, "DBUser", null);
             string password = (string)Registry.GetValue(regKeyPath, "Password", null);
 
-
+            
 
             var entityBuilder = new EntityConnectionStringBuilder(entityConnectionStringFromConfig);
             var builder = new SqlConnectionStringBuilder(entityBuilder.ProviderConnectionString);
