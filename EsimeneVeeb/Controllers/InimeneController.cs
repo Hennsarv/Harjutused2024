@@ -7,13 +7,18 @@ using EsimeneVeeb.Models;
 
 namespace EsimeneVeeb.Controllers
 {
-    public class InimeneController : MyController
+    public class InimeneController : Controller
     {
         // GET: Inimene
         public ActionResult Index()
         {
             var list = Inimene.Rahvas.Values.ToList();
             return View(list);
+        }
+
+        public ActionResult LaeAndmed()
+        {
+            return Json(Inimene.Rahvas.Values.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Inimene/Details/5

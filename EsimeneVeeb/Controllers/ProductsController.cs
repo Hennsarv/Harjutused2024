@@ -5,8 +5,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+//using System.Web.Http;
 using System.Web.Mvc;
 using EsimeneVeeb.Models;
+using Newtonsoft.Json;
 
 namespace EsimeneVeeb.Controllers
 {
@@ -28,6 +30,33 @@ namespace EsimeneVeeb.Controllers
               : sort == "UPD" ? products.OrderByDescending(x => x.UnitPrice)
               : products;
             return View(products.ToList());
+        }
+        [HttpGet]
+        //public JsonResult LaeAndmed()
+        //{
+        //    return Json(db.Products
+        //        .Select(p => new { p.ProductID, p.ProductName, p.UnitPrice, p.Category.CategoryName })
+        //        .ToList(), JsonRequestBehavior.AllowGet);
+        //}
+        public ActionResult LaeAndmed()
+        {
+            var products = db.Products
+                .Select(p => new { p.ProductID, p.ProductName, p.UnitPrice, p.Category.CategoryName })
+                .ToList();
+
+            var jsonSettings = new JsonSerializerSettings
+            {
+                StringEscapeHandling = StringEscapeHandling.Default
+            };
+
+            var json = JsonConvert.SerializeObject(products, Formatting.None, jsonSettings);
+
+            return Content(json, "application/json");
+        }
+
+        public ActionResult Demo()
+        {
+            return View();
         }
 
         // GET: Products/Details/5
