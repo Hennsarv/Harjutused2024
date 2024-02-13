@@ -21,10 +21,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link btn btn-success" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Inimesed", "Index", "Inimene", new { } , new { @class = "btn btn-danger" })</li>
-                
+                    <li>@Html.ActionLink("Inimesed", "Index", "Inimene", new { }, new { @class = "btn btn-danger" })</li>
+
                 </ul>
-                 @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
@@ -38,6 +38,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
