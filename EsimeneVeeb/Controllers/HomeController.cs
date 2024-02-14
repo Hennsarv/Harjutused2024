@@ -6,10 +6,14 @@ using System.Web.Mvc;
 
 namespace EsimeneVeeb.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MyController
     {
         public ActionResult Index()
         {
+            // järgmised kaks rida on samaväärsed
+            ViewBag.Test1 = ParamsBag.Test;
+            ViewData["Test2"] = Request.Params["Test"];
+
             return View();
         }
 

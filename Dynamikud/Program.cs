@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,6 +9,41 @@ using System.Threading.Tasks;
 
 namespace Dynamikud
 {
+    class Bag : DynamicObject
+    {
+        private dynamic bag = null;
+
+        public Bag() => bag = new Dictionary<string, dynamic>();
+        public Bag(Dictionary<string,dynamic> bag) => this.bag = bag;
+
+        public override bool TryGetMember(GetMemberBinder binder, out dynamic result)
+        {
+            result = bag.ContainsKey(binder.Name) ? bag[binder.Name] : null;
+            return true;
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value)
+        {
+            bag[binder.Name] = value;
+            return true;
+        }
+
+        public override string ToString()
+        {
+            if (bag == null || !(bag is IDictionary<string, object>)) return null;
+            Dictionary<string,dynamic>.KeyCollection keys =  bag.Keys;
+
+            return "{" +
+            string.Join(", ",
+            keys.Select(key => $"{key}={bag[key]}"))
+            + "}";
+            ; 
+        }
+
+
+    }
+
+
     internal class Program
     {
         static void Main(string[] args)
@@ -14,28 +51,30 @@ namespace Dynamikud
             int i = 77;
             string s = "miski jutt";
 
-            string test = 
-@"esimene rida
-teine rida
-kolmas rida
-";
-            foreach(string rida in test.Replace("\r","").Split('\n')) 
-            { Console.WriteLine($"=={rida}*"); }
+            Console.WriteLine(s);
+            Console.WriteLine(i);
 
-            Console.WriteLine("\nfailis\n");
+            Object[] asjad = new Object[] { s, i };
 
-            foreach(string rida in System.IO.File.ReadAllText(@"C:\Users\sarvi\source\repos\Harjutused2024\Dynamikud\TextFile1.txt").Split('\n'))
-            {
-                Console.WriteLine($"=={rida}*");
-            }
+            object o = i;
 
-            StringReader sr = new StringReader(test);
-            while(true)
-            {
-                string r = sr.ReadLine();
-                if (r == null) break;
-                Console.WriteLine($"=={r}*");
-            }
+            Console.WriteLine(o.GetType().Name);
+            
+            int j = (int)o;
+
+            dynamic d = s;
+
+            d = d.ToUpper();
+            Console.WriteLine(d);
+
+            dynamic bag = new Bag();
+
+            bag.nimi = "Henn";
+            bag.vanus = 68;
+            bag.Kodu = "Mõnistes";
+            bag.kodu = "Männikul";
+            bag.vanus++;
+            Console.WriteLine(bag);
 
         }
     }

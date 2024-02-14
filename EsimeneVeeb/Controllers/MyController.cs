@@ -16,5 +16,15 @@ namespace EsimeneVeeb.Controllers
         protected NorthwindEntities db => 
             _db ?? 
             (_db = new NorthwindEntities("x"));
+
+        dynamic _tempBag;
+        protected dynamic TempBag =>
+            _tempBag ?? (_tempBag = new Bag(TempData));
+
+        dynamic _paramsBag;
+        protected dynamic ParamsBag =>
+            _paramsBag ?? (_paramsBag = new Bag(Request.Params));
+
+
     }
 }
