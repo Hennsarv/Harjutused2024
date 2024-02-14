@@ -6,6 +6,14 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+<style>
+    .hs-btn {
+        margin-right:20px;
+    }
+    .hs-btn:last-child {
+        margin-right: 0;
+    }
+</style>
 
 </head>
 <body>
@@ -21,7 +29,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link btn btn-success" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Inimesed", "Index", "Inimene", new { }, new { @class = "btn btn-danger" })</li>
+                    <li>@Html.ActionLink("Inimesed", "Index", "Inimene", new { }, new { @class = "nav-link btn btn-success hs-btn", style="margin-right:10px" })</li>
+                    <li>@Html.ActionLink("Kunded", "Index", "Customers", new { }, new { @class = "nav-link btn btn-success hs-btn" })</li>
+
 
                 </ul>
                 @Html.Partial("_LoginPartial")
