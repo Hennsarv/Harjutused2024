@@ -72,10 +72,11 @@
                 @Html.DisplayFor(modelItem => item.TitleOfCourtesy)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate, "{0:yyyy-MM-dd}")
+                @($"{item.BirthDate:dd-MM-yyyy}")
+                @*@Html.DisplayFor(modelItem => item.BirthDate, "{0:yyyy-MM-dd}")*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HireDate)
+                @Html.DisplayFor(modelItem => item.HireDate, "{0:dd-MM-yyyy}")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
