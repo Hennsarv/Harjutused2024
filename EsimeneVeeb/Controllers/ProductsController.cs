@@ -20,6 +20,16 @@ namespace EsimeneVeeb.Controllers
             return Json(db.Customers, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Kustomaarid2()
+        {
+            return Json(db.Customers
+                
+                .Select(x => new {x.CompanyName,x.Country})
+                , JsonRequestBehavior.AllowGet);
+        }
+
+
+
         // GET: Products
         public ActionResult Index(string sort = "PI")
         {

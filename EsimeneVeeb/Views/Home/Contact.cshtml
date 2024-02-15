@@ -16,4 +16,121 @@
         <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
         <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
     </address>
+
+
+    <buton id="test" class="btn btn-danger">NUpp</buton>
+
+    <table id="Kustid" class="datatable">
+        <thead>
+            <tr>
+            @*<th>CustomerID</th>
+            <th>CompanyName</th>
+            <th>ContactName</th>
+            <th>ContactTitle</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Region</th>*@
+            @*<th>PostalCode</th>
+            <th>Country</th>
+            <th>Phone</th>
+            <th>Fax</th>
+            <th>Pahalane</th>*@
+        </tr>
+        </thead>
+        <tbody>
+            <!-- siia tulevad andmed -->
+        </tbody>
+    </table>
+
+
 </main>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Kustuta olemasolev DataTable, kui see on olemas
+            if ($.fn.DataTable.isDataTable('#Kustid')) {
+                $('#Kustid').DataTable().destroy();
+                $('#Kustid thead tr').remove(); // Tühjenda tabeli päis
+            }
+
+            // Lae andmed AJAX-iga
+            $.ajax({
+                url: '/Products/Kustomaarid2',
+                type: 'POST',
+                dataType: 'json',
+                success: function (andmed) {
+                    // Täida tabel andmetega 
+                    {
+
+                        $('#Kustid').DataTable({
+                            data: andmed,
+                            columns: generateColumns(andmed)
+                        }).rows.add(andmed).draw()
+                            ;
+                    }
+                },
+                error: function () {
+                    alert('Andmete laadimisel tekkis viga.');
+                }
+            });
+            // Funktsioon veergude nimede genereerimiseks
+            function generateColumns(andmed) {
+                var columns = [];
+
+                if (andmed.length > 0) {
+                    for (var veeruNimi in andmed[0]) {
+                        columns.push({ data: veeruNimi, title: veeruNimi });
+                    }
+                }
+                console.log('Genereeritud veerud:', columns); // Lisa see rida
+                return columns;
+            }
+
+            $('#test').click(function () {
+                // Kustuta olemasolev DataTable, kui see on olemas
+                if ($.fn.DataTable.isDataTable('#Kustid')) {
+                    $('#Kustid').DataTable().destroy();
+                    $('#Kustid thead tr').remove(); // Tühjenda tabeli päis
+                }
+
+                // Lae andmed AJAX-iga
+                $.ajax({
+                    url: '/Products/Kustomaarid',
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (andmed) {
+                        // Täida tabel andmetega 
+                        {
+
+                            $('#Kustid').DataTable({
+                                data: andmed,
+                                columns: generateColumns(andmed)
+                            }).rows.add(andmed).draw()
+                                ;
+                        }
+                    },
+                    error: function () {
+                        alert('Andmete laadimisel tekkis viga.');
+                    }
+                });
+                // Funktsioon veergude nimede genereerimiseks
+                function generateColumns(andmed) {
+                    var columns = [];
+
+                    if (andmed.length > 0) {
+                        for (var veeruNimi in andmed[0]) {
+                            columns.push({ data: veeruNimi, title: veeruNimi });
+                        }
+                    }
+                    console.log('Genereeritud veerud:', columns); // Lisa see rida
+                    return columns;
+                }
+            });
+
+        });
+        
+    </script>
+
+
+}
