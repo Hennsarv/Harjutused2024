@@ -15,6 +15,10 @@ namespace EsimeneVeeb.Controllers
     public class ProductsController : MyController
     {
 
+        public ActionResult Kustomaarid()
+        {
+            return Json(db.Customers, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Products
         public ActionResult Index(string sort = "PI")
