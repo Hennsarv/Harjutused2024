@@ -18,4 +18,20 @@ namespace EsimeneVeeb.Models
     public partial class Product
     { }
 
+    public class EmployeeMetadata 
+    {
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+        public Nullable<System.DateTime> BirthDate { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+        public Nullable<System.DateTime> HireDate { get; set; }
+    }
+
+    [MetadataType(typeof(EmployeeMetadata))]
+    public partial class Employee { }
+
+
 }

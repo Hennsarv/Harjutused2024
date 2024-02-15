@@ -25,13 +25,33 @@ namespace NWAken3
         {
             InitializeComponent();
             InitializeDataGrid();
-            
+
         }
 
         public void InitializeDataGrid()
         {
-            Gridike.ItemsSource = db.Customers.ToList();
+            Gridike.ItemsSource = db.Products
+                .ToList();
+
+            Gridike.AutoGeneratingColumn += Gridike_AutoGeneratingColumn;
+
         }
+
+        private void Gridike_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        => e.Cancel = (e.PropertyType.FullName.Contains("NWA"));
+
+        /* selline jupp oli enne
+        //{
+        //    //if (e.PropertyName == "Products")
+        //    //{
+        //    //    e.Cancel = true; // Tühistab veeru auto-generate
+        //    //}
+
+        //    // see alati ei aita
+        //    if (e.PropertyType.FullName.Contains("NWA")) e.Cancel = true;  
+        //}
+        */
+
 
         private void Nupuke_Click(object sender, RoutedEventArgs e)
         {

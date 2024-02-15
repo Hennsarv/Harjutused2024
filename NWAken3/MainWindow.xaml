@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="Gridike" AutoGenerateColumns="True" Margin="0,0,0,65"/>
+        <DataGrid Name="Gridike" AutoGenerateColumns="True"  Margin="0,0,0,65"/>
 
         <Button Click="Nupuke_Click" x:Name="Nupuke" Width="200" Height="30" Content="OLen nupp" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10"/>
         <TextBox Name="Boxike" Width="390" VerticalAlignment="Bottom" HorizontalAlignment="Right" Text="Text" Margin="0,0,10,10"/>

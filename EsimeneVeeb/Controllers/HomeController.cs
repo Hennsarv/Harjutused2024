@@ -13,7 +13,7 @@ namespace EsimeneVeeb.Controllers
             // järgmised kaks rida on samaväärsed
             ViewBag.Test1 = ParamsBag.Test;
             ViewData["Test2"] = Request.Params["Test"];
-
+            TempBag.Test = "testime sega";
             return View();
         }
 

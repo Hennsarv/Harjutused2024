@@ -19,7 +19,7 @@ namespace EsimeneVeeb.Controllers
         // GET: Products
         public ActionResult Index(string sort = "PI")
         {
-            var products = db.Products.Include(p => p.Category);
+            var products = db.Products.Where(x => x.ProductID == x.ProductID) ;//.Include(p => p.Category);
             ViewBag.Sort = sort;
             products =
                 sort == "PI" ? products.OrderBy(x => x.ProductID)
